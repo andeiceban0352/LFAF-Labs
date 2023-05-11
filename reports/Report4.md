@@ -34,20 +34,43 @@ where A is a nonterminal symbol, a is a terminal symbol, and B1, B2, ..., Bk are
 
 
 ## Implementation 
-### remove_unit_productions()
-&ensp;&ensp;&ensp; This is a method for removing unit productions from a set of production rules. Unit productions are production rules of the form A -> B, where A and B are non-terminal symbols. The method also removes symbols that are not reachable from the start symbol. It takes the production rules as input and modifies them by removing unit productions and symbols that are not reachable.
+
+&ensp;&ensp;&ensp; This piece of code searches for epsilon productions within a grammar. Epsilon productions refer to production rules that map a non-terminal symbol to an empty string. The code performs the following steps for each non-terminal symbol in the grammar:
+
+It retrieves all the production rules associated with the symbol using the expression 'P[symbol]'. This expression returns a set of strings representing all the possible productions for that non-terminal.
+
+It iterates through each production rule for the given non-terminal symbol using the loop 'for production in productions'.
+
+For each production rule, it checks if the current production is an epsilon production by comparing the value of 'production' to the string 'ε'.
+
+If the current production is an epsilon production, the code adds the tuple '(symbol, production)' to a list called 'epsilon_productions'. This tuple signifies that the non-terminal symbol can produce an empty string.
+
+Furthermore, the code removes the epsilon production from the set of productions for that non-terminal using 'P[symbol].remove(production)'. This step ensures that the grammar adheres to Chomsky normal form, which disallows epsilon productions.
 
 ```python
-def remove_unit_productions(self):
-    # Remove unit productions
-    reachable = {'S'}
+        epsilon_productions = []
+        for symbol in list(self.P):
+            productions = list(self.P[symbol])
+            for production in productions:
+                if production == 'ε':
+                    epsilon_productions.append((symbol, production))
+                    self.P[symbol].remove(production)
+ ```
+ 
+
+&ensp;&ensp;&ensp; The given code loops through every symbol in the grammar and obtains the group of productions connected to that symbol. It examines each production and determines if it includes an empty string (epsilon). When an epsilon string is found, the code generates a fresh production by substituting the empty string with nothing. This new production is subsequently appended to the group of productions associated with the same symbol.
+
+```python
     for symbol in list(self.P):
-        productions = list(self.P[symbol])
-        for production in productions:
-            if len(production) == 1 and production.isupper():
-                self.P[symbol].remove(production)
-                self.P[symbol].update(self.P[production])
-    
+            productions = list(self.P[symbol])
+            for production in productions:
+                for epsilon in epsilon_productions:
+                    new_production = production.replace(epsilon[0], '')
+                    if new_production != production:
+                        self.P[symbol].add(new_production)
+ ```
+&ensp;&ensp;&ensp;  This code is a part of an algorithm used to find the set of all unreachable nonterminals in a context-free grammar. The algorithm uses a set reachable to keep track of all the nonterminals that are reachable from the start symbol of the grammar. The while loop keeps iterating until no new nonterminals are added to reachable in an iteration. The changed variable is used to keep track of whether any new nonterminals were added to reachable in the current iteration. In each iteration, the loop goes through all the nonterminals in the grammar, and for each nonterminal nonterm, it checks whether it is already in reachable. If it is, then it looks at each of its production rules prod, and for each symbol in the production rule, it checks whether it is a nonterminal.
+```python
     # Find reachable symbols
     changed = True
     while changed:
@@ -69,9 +92,7 @@ def remove_unit_productions(self):
 ```
 
 ### remove_inaccessible_symbols()
-&ensp;&ensp;&ensp; This function removes any symbols (nonterminals) that are not reachable from the start symbol 'S' in a context-free grammar.
-It starts by finding all reachable symbols and then removes the nonterminals that are not reachable from the start symbol.
-
+&ensp;&ensp;&ensp; This function is designed to eliminate nonterminal symbols that cannot be reached from the starting symbol of a grammar, as well as discard productions that cannot be reached from the starting symbol. The code examines nonterminal symbols that are not reachable from the starting symbol by iterating through each symbol in the 'inaccessible' set and deleting all associated productions from the 'P' dictionary. The nonterminal symbol is also removed from the 'V_N' set. Additionally, the code identifies productions that are unreachable from the starting symbol. It iterates through each nonterminal symbol in the 'P' dictionary and generates a new set of productions that only includes those with symbols that are either reachable or terminals. This new set replaces the original set of productions for that nonterminal symbol.
 ```python
 def remove_inaccessible_symbols(self):
     # Find reachable symbols
@@ -96,7 +117,7 @@ def remove_inaccessible_symbols(self):
 ```
 
 ### convert_long_productions_to_cnf()
-&ensp;&ensp;&ensp; This function converts the productions of a context-free grammar into Chomsky normal form, which is a standard form for context-free grammars. It replaces any production with more than two non-terminal symbols with a set of new productions that have only two non-terminals or terminals on the right-hand side.
+&ensp;&ensp;&ensp; The function goes through each symbol in the production rules of the grammar, one by one. For every symbol, it checks whether any of its productions consist of more than two symbols. If a production exceeds two symbols, the program generates new intermediate symbols to divide the production into smaller segments. To name these intermediate symbols, the code starts with 'X' and appends an increasing index number. Subsequently, for each symbol in the production that has more than two symbols, the code introduces an intermediate symbol and includes it in the production rule. This intermediate symbol serves as a replacement for the original symbol in the production rule. Finally, the code removes the original production rule with more than two symbols and substitutes it with a new production rule that employs the intermediate symbols. Consequently, the resulting grammar will contain only two symbols on the right-hand side of each production rule.
 
 ```python
 def convert_long_productions_to_cnf(self):
