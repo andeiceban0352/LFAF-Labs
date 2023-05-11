@@ -87,106 +87,20 @@ from chomskyform import ChomskyForm
 #Lab 4 -----------------------------------------------------------------------------------------------------
 # Varianta 8
 
-#
-# VN = {'S', 'A', 'B', 'C'}
-# VT = {'a','d'}
-# P = {
-#     'S': {'dB', 'A'},
-#     'A': {'d', 'dS', 'aAdAB'},
-#     'B': {'a', 'aS', 'A', 'ε'},
-#     'C': {'Aa'}
-# }
-#
-# ChomskyForm.ChomskyForm(VN, VT, P).chomsky_normal_form()
-#
-# print("VN : " , VN)
-# print("VT : ", VT)
-# print("The product is : ", P)
-#
-#
 
-import re
-
-import re
-
-def is_terminal(symbol, VT):
-    return symbol in VT
-
-def generate_new_symbol(symbols):
-    i = 0
-    while f'X{i}' in symbols:
-        i += 1
-    return f'X{i}'
-
-def convert_to_chomsky(VN, VT, P, S):
-    non_terminals = set(VN)
-    terminals = set(VT)
-
-    chomsky_rules = {}
-
-    for lhs, rhs_list in P.items():
-        for rhs in rhs_list:
-            rhs_symbols = rhs.split()
-
-            if len(rhs_symbols) == 1 and is_terminal(rhs_symbols[0], VT):
-                chomsky_rules.setdefault(lhs, []).append(rhs)
-
-            elif len(rhs_symbols) == 1 and rhs_symbols[0] in non_terminals:
-                new_symbol = generate_new_symbol(non_terminals)
-                non_terminals.add(new_symbol)
-                chomsky_rules.setdefault(lhs, []).append(new_symbol)
-                chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[0])
-
-            elif len(rhs_symbols) == 2 and is_terminal(rhs_symbols[0], VT) and is_terminal(rhs_symbols[1], VT):
-                new_symbol = generate_new_symbol(non_terminals)
-                non_terminals.add(new_symbol)
-                chomsky_rules.setdefault(lhs, []).append(new_symbol)
-                chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[0])
-                chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[1])
-
-            elif len(rhs_symbols) == 2 and rhs_symbols[0] in non_terminals and is_terminal(rhs_symbols[1], VT):
-                chomsky_rules.setdefault(lhs, []).append(rhs)
-
-            elif len(rhs_symbols) == 2 and is_terminal(rhs_symbols[0], VT) and rhs_symbols[1] in non_terminals:
-                new_symbol = generate_new_symbol(non_terminals)
-                non_terminals.add(new_symbol)
-                chomsky_rules.setdefault(lhs, []).append(new_symbol)
-                chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[0])
-                chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[1])
-
-            elif len(rhs_symbols) > 2:
-                for i in range(len(rhs_symbols)):
-                    if is_terminal(rhs_symbols[i], VT):
-                        new_symbol = generate_new_symbol(non_terminals)
-                        non_terminals.add(new_symbol)
-                        chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[i])
-                        rhs_symbols[i] = new_symbol
-                while len(rhs_symbols) > 2:
-                    new_symbol = generate_new_symbol(non_terminals)
-                    non_terminals.add(new_symbol)
-                    chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[-2])
-                    chomsky_rules.setdefault(new_symbol, []).append(rhs_symbols[-1])
-                    rhs_symbols = rhs_symbols[:-2] + [new_symbol]
-                chomsky_rules.setdefault(lhs, []).append(rhs_symbols[0])
-                chomsky_rules.setdefault(lhs, []).append(rhs_symbols[1])
-
-    return chomsky_rules
-
-# Example usage with the given input
 VN = {'S', 'A', 'B', 'C'}
-VT = {'a', 'b'}
+VT = {'a','d'}
 P = {
-    'S': ['a B', 'A C'],
-    'A': ['a', 'A S C', 'B C a'],
-    'B': ['C', 'b S', 'b'],
-    'C': ['BA', '']
+    'S': {'dB', 'A'},
+    'A': {'d', 'dS', 'aAdAB'},
+    'B': {'a', 'aS', 'A', 'ε'},
+    'C': {'Aa'}
 }
-S = 'S'
 
-chomsky_grammar = convert_to_chomsky(VN, VT, P, S)
+ChomskyForm.ChomskyForm(VN, VT, P).chomsky_normal_form()
 
-print("Chomsky Normal Form Grammar:")
-for lhs, rhs_list in chomsky_grammar.items():
-    for rhs in rhs_list:
-        print(f"{lhs} -> {' '.join(rhs.split())}")
+print("VN : " , VN)
+print("VT : ", VT)
+print("The product is : ", P)
+
 

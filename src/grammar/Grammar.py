@@ -1,5 +1,5 @@
 import random
-from LFAF.src.automaton import FiniteAutomaton
+# from LFAF-Labs.src.automaton import FiniteAutomaton
 
 class Grammar:
     # Constructor of Grammar class
@@ -51,7 +51,7 @@ class Grammar:
         print("Automation :", arr)
 
         # Call the constructor of Finite Automaton with all the params
-        return FiniteAutomaton.FiniteAutomaton(Q, Sigma, arr, q0, F)
+        # return FiniteAutomaton.FiniteAutomaton(Q, Sigma, arr, q0, F)
 
     def check_Grammar(self, P):
         if self.check_Context_free(P):
