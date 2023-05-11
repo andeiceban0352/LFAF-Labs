@@ -137,8 +137,16 @@ def remove_epsilon_productions(self):
                 epsilon_productions.append((symbol, production))
                 self.P[symbol].remove(production)
 ```
+
 ## Results
-<img alt="screenshots/lab4" src="screenshots/lab4.pn" />
+```
+Grammar in Chomsky normal form:
+
+VN :  {'X5', 'X6', 'B', 'X7', 'X1', 'X9', 'X4', 'X10', 'X3', 'X0', 'X2', 'X11', 'X8', 'S', 'A'}
+VT :  {'d', 'a'}
+The product is :  {'S': {'X0', 'dB', 'dS', 'd'}, 'A': {'d', 'dS', 'X4'}, 'B': {'aS', 'a', 'dS', 'X8', 'd'}, 'X0': {'B', 'a', 'X1', 'X3', 'X2'}, 'X1': {'A'}, 'X2': {'d'}, 'X3': {'A'}, 'X4': {'X5', 'X6', 'B', 'a', 'X7'}, 'X5': {'A'}, 'X6': {'d'}, 'X7': {'A'}, 'X8': {'B', 'a', 'X9', 'X10', 'X11'}, 'X9': {'A'}, 'X10': {'d'}, 'X11': {'A'}}
+
+```
 
 ## Conclusions
 &ensp;&ensp;&ensp; After doing this laboratory work, i understand that normalizing a grammar is the process of converting it into a standard form or normal form, which can make it easier to analyze and manipulate the grammar. Chomsky Normal Form (CNF) is a specific normal form for context-free grammars, which involves converting each production rule to either have two nonterminal symbols or one terminal symbol. 
