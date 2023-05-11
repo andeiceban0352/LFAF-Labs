@@ -27,3 +27,17 @@ F = {q3},
 δ(q4,a) = q0,
 δ(q2,a) = q3,
 δ(q1,b) = q1.
+
+
+Fourth lab : 
+
+Variant 8
+G = {'VN', 'VT', 'P', 'S'}
+VN = {'S', 'A', 'B', 'C'}
+VT = {'a','d'}
+P = {
+    'S': {'dB', 'A'},
+    'A': {'d', 'dS', 'aAdAB'},
+    'B': {'a', 'aS', 'A', 'ε'},
+    'C': {'Aa'}
+}
