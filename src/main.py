@@ -1,8 +1,8 @@
 from grammar import Grammar
 from automaton import NFA_DFA
-from lexer import lexer as getLexer
-
 from chomskyform import ChomskyForm
+from Parser import Parser
+from lexer import lexer as getLexer
 
 
 #Lab 1 -----------------------------------------------------------------------------------------------------
@@ -86,21 +86,28 @@ from chomskyform import ChomskyForm
 
 #Lab 4 -----------------------------------------------------------------------------------------------------
 # Varianta 8
+# VN = {'S', 'A', 'B', 'C'}
+# VT = {'a','d'}
+# P = {
+#     'S': {'dB', 'A'},
+#     'A': {'d', 'dS', 'aAdAB'},
+#     'B': {'a', 'aS', 'A', 'ε'},
+#     'C': {'Aa'}
+# }
+#
+# ChomskyForm.ChomskyForm(VN, VT, P).chomsky_normal_form()
+#
+# print("VN : " , VN)
+# print("VT : ", VT)
+# print("The product is : ", P)
 
+#Lab 5 -----------------------------------------------------------------------------------------------------
+Lexer = getLexer.Lexer("(7 - 2 * (10 - 8) + 31 ) /2")
 
-VN = {'S', 'A', 'B', 'C'}
-VT = {'a','d'}
-P = {
-    'S': {'dB', 'A'},
-    'A': {'d', 'dS', 'aAdAB'},
-    'B': {'a', 'aS', 'A', 'ε'},
-    'C': {'Aa'}
-}
+tokens = Lexer.get_tokens()
+parser = Parser.Parser(tokens)
+prser = parser.parse_tokens()
 
-ChomskyForm.ChomskyForm(VN, VT, P).chomsky_normal_form()
-
-print("VN : " , VN)
-print("VT : ", VT)
-print("The product is : ", P)
-
+print("The lexer", tokens)
+print("The parser" , prser)
 

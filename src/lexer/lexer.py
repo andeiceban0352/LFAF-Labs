@@ -37,7 +37,6 @@ class Lexer:
                 if match:
                     if character_type:
                         token = (match.group(), character_type)
-                        print(token)
                         tokens.append(token)
                     break # put the element in the list and break to go to the next element
             if not match:
