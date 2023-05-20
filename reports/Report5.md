@@ -16,6 +16,14 @@
    3. Implement a simple parser program that could extract the syntactic information from the input text.
 
 
+## Theory
+&ensp;&ensp;&ensp; Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols, either in natural language, computer languages or data structures, conforming to the rules of a formal grammar. The term parsing comes from Latin pars (orationis), meaning part (of speech).[1]
+
+&ensp;&ensp;&ensp; The term has slightly different meanings in different branches of linguistics and computer science. Traditional sentence parsing is often performed as a method of understanding the exact meaning of a sentence or word, sometimes with the aid of devices such as sentence diagrams. It usually emphasizes the importance of grammatical divisions such as subject and predicate.
+
+&ensp;&ensp;&ensp; Within computational linguistics the term is used to refer to the formal analysis by a computer of a sentence or other string of words into its constituents, resulting in a parse tree showing their syntactic relation to each other, which may also contain semantic and other information (p-values).[citation needed] Some parsing algorithms may generate a parse forest or list of parse trees for a syntactically ambiguous input.[2]
+
+
 ## Implementation 
 
 &ensp;&ensp;&ensp;  The objective of the "parse_tokens" function is to analyze a series of tokens and compute the value of the expression they represent. Once the evaluation is done, the code verifies if there are any remaining tokens for further processing. If any tokens are found, it throws an exception indicating that the syntax is invalid.
@@ -92,11 +100,15 @@ The parser = 17.0
 ```
 
 ## Conclusions
-&ensp;&ensp;&ensp; After doing this laboratory work, i understand that normalizing a grammar is the process of converting it into a standard form or normal form, which can make it easier to analyze and manipulate the grammar. Chomsky Normal Form (CNF) is a specific normal form for context-free grammars, which involves converting each production rule to either have two nonterminal symbols or one terminal symbol. 
+&ensp;&ensp;&ensp; In conclusion, the laboratory work on parsers and lexers has provided valuable insights into the fundamental concepts and techniques used in language processing. Through the implementation and utilization of both lexer and parser components, we have gained a deeper understanding of how programming languages are analyzed and interpreted.
 
-&ensp;&ensp;&ensp; CNF has several advantages, including simplifying the grammar and making it easier to analyze, parse, or generate sentences in the language. However, converting a grammar to CNF can sometimes be a complex process, and may not always be possible for some grammars. Nevertheless, normalizing a grammar is an important technique in formal language theory, and can be applied to different types of grammars, depending on their characteristics and requirements.
+&ensp;&ensp;&ensp;  The lexer, or lexical analyzer, played a crucial role in the laboratory work by breaking down the input program into a sequence of tokens. It effectively identified and categorized the different components such as keywords, identifiers, operators, and literals, which served as the building blocks for further analysis. By implementing the lexer, we were able to appreciate the importance of tokenization and how it facilitates subsequent parsing.
 
-&ensp;&ensp;&ensp; The time complexity of this process is generally O(n^3), where n is the number of nonterminal symbols in the grammar. However, more efficient algorithms can be used to achieve a better time complexity, such as the CYK algorithm, which has a time complexity of O(n^3 * log n) for converting a CFG to CNF.
+&ensp;&ensp;&ensp;  The parser, on the other hand, took the token stream produced by the lexer and organized it into a structured representation, typically an abstract syntax tree (AST). Through the application of parsing algorithms like LL(1), LR(1), or recursive descent, we were able to handle the grammar rules and enforce syntactic correctness. The parser acted as a vital component in the language processing pipeline, enabling the analysis and manipulation of the input program's structure.
+
+&ensp;&ensp;&ensp; Working on the laboratory assignment allowed us to apply our theoretical knowledge in a practical context. We implemented both the lexer and parser, grasping the challenges involved in designing efficient algorithms that can handle various grammatical constructs and error handling scenarios. This hands-on experience was invaluable in reinforcing our understanding of how lexers and parsers work in tandem to process programming languages.
+
+
 
 
 ## References:
