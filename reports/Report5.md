@@ -9,13 +9,11 @@
 1. Get familiar with parsing, what it is and how it can be programmed [1].
 2. Get familiar with the concept of AST [2].
 3. In addition to what has been done in the 3rd lab work do the following:
-    i. In case you didn't have a type that denotes the possible types of tokens you need to:
-        a. Have a type TokenType (like an enum) that can be used in the lexical analysis to categorize the tokens.
-        b. Please use regular expressions to identify the type of the token.
-     ii. Implement the necessary data structures for an AST that could be used for the text you have processed in the 3rd lab work.
-     iii. Implement a simple parser program that could extract the syntactic information from the input text.
-
-
+   1. In case you didn't have a type that denotes the possible types of tokens you need to:
+      1. Have a type __*TokenType*__ (like an enum) that can be used in the lexical analysis to categorize the tokens. 
+      2. Please use regular expressions to identify the type of the token.
+   2. Implement the necessary data structures for an AST that could be used for the text you have processed in the 3rd lab work.
+   3. Implement a simple parser program that could extract the syntactic information from the input text.
 
 ## Theory
 &ensp;&ensp;&ensp; Chomsky Normal Form (CNF) is a specific form of a context-free grammar (CFG), which is a set of production rules that define a formal language. In CNF, each production rule is of the form:
