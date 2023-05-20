@@ -17,12 +17,15 @@
 
 
 ## Theory
-&ensp;&ensp;&ensp; Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols, either in natural language, computer languages or data structures, conforming to the rules of a formal grammar. The term parsing comes from Latin pars (orationis), meaning part (of speech).[1]
+&ensp;&ensp;&ensp; Parsing, syntax analysis, or syntactic analysis is the process of analyzing a string of symbols, either in natural language, computer languages or data structures, conforming to the rules of a formal grammar. The term parsing comes from Latin pars (orationis), meaning part (of speech).
 
 &ensp;&ensp;&ensp; The term has slightly different meanings in different branches of linguistics and computer science. Traditional sentence parsing is often performed as a method of understanding the exact meaning of a sentence or word, sometimes with the aid of devices such as sentence diagrams. It usually emphasizes the importance of grammatical divisions such as subject and predicate.
 
-&ensp;&ensp;&ensp; Within computational linguistics the term is used to refer to the formal analysis by a computer of a sentence or other string of words into its constituents, resulting in a parse tree showing their syntactic relation to each other, which may also contain semantic and other information (p-values).[citation needed] Some parsing algorithms may generate a parse forest or list of parse trees for a syntactically ambiguous input.[2]
+&ensp;&ensp;&ensp; Within computational linguistics the term is used to refer to the formal analysis by a computer of a sentence or other string of words into its constituents, resulting in a parse tree showing their syntactic relation to each other, which may also contain semantic and other information (p-values).[citation needed] Some parsing algorithms may generate a parse forest or list of parse trees for a syntactically ambiguous input.
 
+&ensp;&ensp;&ensp; The term is also used in psycholinguistics when describing language comprehension. In this context, parsing refers to the way that human beings analyze a sentence or phrase (in spoken language or text) "in terms of grammatical constituents, identifying the parts of speech, syntactic relations. This term is especially common when discussing which linguistic cues help speakers interpret garden-path sentences.
+
+&ensp;&ensp;&ensp; Within computer science, the term is used in the analysis of computer languages, referring to the syntactic analysis of the input code into its component parts in order to facilitate the writing of compilers and interpreters. The term may also be used to describe a split or separation.
 
 ## Implementation 
 
@@ -70,7 +73,6 @@
         return rez
 ```
 
-### remove_inaccessible_symbols()
 &ensp;&ensp;&ensp;  The "evaluate_factors" function's goal is to evaluate and parse the factors contained in an arithmetic statement. Factors can be either parenthesized subexpressions or numerical numbers. The token indicates a numerical value when it is of the "Digit" type. When the token is of the "LeftP" type, it denotes the start of a parenthesized subexpression. As the location is increased, the code invokes the expr method recursively to evaluate the expression enclosed in parentheses. The next token should be a "RightP" type, indicating the closing parenthesis. If it is not, an exception is raised to indicate a missing closing parenthesis. If the current token does not match either "Digit" or "LeftP", it signifies an invalid syntax. In such cases, the code raises an exception with a descriptive message indicating the invalid token encountered.
 ```python
     def evaluate_factors(self):
