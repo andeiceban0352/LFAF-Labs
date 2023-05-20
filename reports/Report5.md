@@ -18,7 +18,7 @@
 
 ## Implementation 
 
-&ensp;&ensp;&ensp; This piece of code searches for epsilon productions within a grammar. Epsilon productions refer to production rules that map a non-terminal symbol to an empty string. The code performs the following steps for each non-terminal symbol in the grammar:
+&ensp;&ensp;&ensp;  The objective of the "parse_tokens" function is to analyze a series of tokens and compute the value of the expression they represent. Once the evaluation is done, the code verifies if there are any remaining tokens for further processing. If any tokens are found, it throws an exception indicating that the syntax is invalid.
 
 
 ```python
@@ -30,7 +30,7 @@
  ```
  
 
-&ensp;&ensp;&ensp; The given code loops through every symbol in the grammar and obtains the group of productions connected to that symbol. It examines each production and determines if it includes an empty string (epsilon). When an epsilon string is found, the code generates a fresh production by substituting the empty string with nothing. This new production is subsequently appended to the group of productions associated with the same symbol.
+&ensp;&ensp;&ensp; The objective of the "evaluate_expression" function is to analyze and compute a mathematical expression. It begins by invoking the "term" function to calculate the value of the initial term in the expression. The "expr" function proceeds to evaluate the arithmetic expression from left to right, considering both addition and subtraction operations.
 
 ```python
     def evaluate_expression(self):
@@ -46,7 +46,7 @@
                 break
         return rez
  ```
-&ensp;&ensp;&ensp;  This code is a part of an algorithm used to find the set of all unreachable nonterminals in a context-free grammar. The algorithm uses a set reachable to keep track of all the nonterminals that are reachable from the start symbol of the grammar. The while loop keeps iterating until no new nonterminals are added to reachable in an iteration. The changed variable is used to keep track of whether any new nonterminals were added to reachable in the current iteration. In each iteration, the loop goes through all the nonterminals in the grammar, and for each nonterminal nonterm, it checks whether it is already in reachable. If it is, then it looks at each of its production rules prod, and for each symbol in the production rule, it checks whether it is a nonterminal.
+&ensp;&ensp;&ensp;   The objective of the "evaluate_term" function is the same as the objective of "evaluate_expression" method but is specifically designed for handling different arithmetic calculations. It starts by invoking the "evaluate_factors" method to evaluate the initial factor within the term. The "term" method carries out a sequential evaluation of a term in an arithmetic expression, considering multiplication and division operations. It processes the factors from left to right.
 ```python
     def evaluate_term(self):
         rez = self.evaluate_factors()
@@ -63,7 +63,7 @@
 ```
 
 ### remove_inaccessible_symbols()
-&ensp;&ensp;&ensp; This function is designed to eliminate nonterminal symbols that cannot be reached from the starting symbol of a grammar, as well as discard productions that cannot be reached from the starting symbol. The code examines nonterminal symbols that are not reachable from the starting symbol by iterating through each symbol in the 'inaccessible' set and deleting all associated productions from the 'P' dictionary. The nonterminal symbol is also removed from the 'V_N' set. Additionally, the code identifies productions that are unreachable from the starting symbol. It iterates through each nonterminal symbol in the 'P' dictionary and generates a new set of productions that only includes those with symbols that are either reachable or terminals. This new set replaces the original set of productions for that nonterminal symbol.
+&ensp;&ensp;&ensp;  The "evaluate_factors" function's goal is to evaluate and parse the factors contained in an arithmetic statement. Factors can be either parenthesized subexpressions or numerical numbers. The token indicates a numerical value when it is of the "Digit" type. When the token is of the "LeftP" type, it denotes the start of a parenthesized subexpression. As the location is increased, the code invokes the expr method recursively to evaluate the expression enclosed in parentheses. The next token should be a "RightP" type, indicating the closing parenthesis. If it is not, an exception is raised to indicate a missing closing parenthesis. If the current token does not match either "Digit" or "LeftP", it signifies an invalid syntax. In such cases, the code raises an exception with a descriptive message indicating the invalid token encountered.
 ```python
     def evaluate_factors(self):
         if self.tokens[self.pos][1] == "NUMBER":
